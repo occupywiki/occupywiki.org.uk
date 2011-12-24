@@ -1,0 +1,82 @@
+<IfModule mod_ssl.c>
+<VirtualHost _default_:443>
+  ServerName occupywiki.org.uk
+  ServerAlias wiki.occupytogether.co.uk
+  ServerAlias www.occupywiki.org.uk 
+  ServerAlias occupywiki.co.uk 
+  ServerAlias www.occupywiki.co.uk 
+  ServerSignature Off
+  ServerAdmin wiki@occupywiki.org.uk
+  UseCanonicalName On
+  SetEnv MW_INSTALL_PATH /var/lib/occupywiki.org.uk
+
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+  ErrorLog ${APACHE_LOG_DIR}/occupywiki.org.uk-ssl_error.log
+  CustomLog ${APACHE_LOG_DIR}/occupywiki.org.uk-ssl_access.log combined
+
+  DocumentRoot "/var/www/occupywiki.org.uk"
+  DirectoryIndex index.php
+  Options -Indexes FollowSymLinks
+
+  # setup short URLs
+  AliasMatch ^/[a-z]{3,}/ "/var/www/occupywiki.org.uk/w/index.php"
+  # allow "/wiki" but not "/edit" etc (i.e. with no $title)
+  Alias /wiki "/var/www/occupywiki.org.uk/w/index.php"
+  # redirect front page
+  RedirectMatch permanent ^/$ https://occupywiki.org.uk/wiki/Main_Page
+  # redirect old-style links
+  RedirectMatch permanent ^/([A-Z].*)$ https://occupywiki.org.uk/wiki/$1
+  # redirect old-style image links
+  RedirectMatch permanent ^/(images/.*)$ https://occupywiki.org.uk/w/$1
+  # redirect old-style query links
+  RedirectMatch permanent ^/(index.php\?.*)$ https://occupywiki.org.uk/w/$1
+
+  AddHandler application/x-httpd-php .php
+  AddType 'image/x-icon' .ico
+
+<Directory "/var/www/occupywiki.org.uk/w">
+  AllowOverride None
+  Order Allow,Deny
+  Allow from all
+</Directory>
+
+<Directory "/var/www/occupywiki.org.uk/w/images">
+  RemoveHandler .php
+  php_admin_value engine Off
+</Directory>
+
+# inline .htaccess automatically generated using
+# $ cat-htaccess -L /var/www/occupywiki.org.uk/w/
+<Directory "/var/www/occupywiki.org.uk/w/images">
+# Protect against bug 28235
+<IfModule rewrite_module>
+	RewriteEngine On
+	RewriteCond %{QUERY_STRING} \.[^\\/:*?\x22<>|%]+(#|\?|$) [nocase]
+	RewriteRule . - [forbidden]
+</IfModule>
+</Directory>
+
+	# SSL settings, from default-ssl
+	SSLEngine on
+	SSLCipherSuite HIGH
+	SSLProtocol all -SSLv2
+	SSLCertificateFile /etc/ssl/gandi/occupywiki.crt 
+	SSLCertificateKeyFile /etc/ssl/gandi/occupywiki.key
+	SSLCertificateChainFile /etc/ssl/gandi/GandiStandardSSLCA.pem 
+
+	<FilesMatch "\.(cgi|shtml|phtml|php)$">
+		SSLOptions +StdEnvVars
+	</FilesMatch>
+	<Directory /usr/lib/cgi-bin>
+		SSLOptions +StdEnvVars
+	</Directory>
+
+	BrowserMatch "MSIE [2-6]" \
+		nokeepalive ssl-unclean-shutdown \
+		downgrade-1.0 force-response-1.0
+	BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown
+
+</VirtualHost>
+</IfModule>

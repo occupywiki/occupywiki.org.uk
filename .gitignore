@@ -1,0 +1,17 @@
+# private data
+host/var/lib/occupywiki.org.uk/AdminSettings.php
+
+# custom tweaks
+host/var/lib/occupywiki.org.uk/images
+host/var/lib/occupywiki.org.uk/extensions/*.tar.*
+host/var/lib/occupywiki.org.uk/extensions/*.tgz
+host/var/lib/occupywiki.org.uk/extensions/[A-Z]*/*
+
+# symlinks to mw installation
+host/var/lib/occupywiki.org.uk/extensions/README
+host/var/lib/occupywiki.org.uk/extensions/ConfirmEdit
+host/var/lib/occupywiki.org.uk/extensions/Gadgets
+host/var/lib/occupywiki.org.uk/extensions/Nuke
+host/var/lib/occupywiki.org.uk/extensions/ParserFunctions
+host/var/lib/occupywiki.org.uk/extensions/Renameuser
+host/var/lib/occupywiki.org.uk/extensions/Vector

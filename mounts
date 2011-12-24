@@ -1,0 +1,26 @@
+#!/bin/sh
+
+do_mount() {
+	while read x; do
+		mkdir -p "$1/$x"
+		sudo mount --bind "$x" "$1/$x"
+	done
+}
+
+do_umount() {
+	while read x; do
+		sudo umount "$1/$x"
+	done
+}
+
+cmd="do_mount host"
+case "$1" in
+-u )	cmd="do_umount host";;
+esac
+
+cat << EOF | $cmd
+/etc/apache2/sites-available/
+/usr/local/bin/
+/var/www/occupywiki.org.uk/
+/var/lib/occupywiki.org.uk/
+EOF

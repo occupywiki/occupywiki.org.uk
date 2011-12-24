@@ -1,0 +1,6 @@
+#!/bin/sh
+for i in $(find "$@" -name .htaccess); do
+	echo '<Directory "'$(dirname "$i")'">'
+	cat "$i"
+	echo '</Directory>'
+done

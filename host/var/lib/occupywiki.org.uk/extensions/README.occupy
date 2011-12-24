@@ -1,0 +1,39 @@
+Installed Extensions
+--------------------
+
+AbuseFilter
+  AbuseFilter-MW1.17-r96279.tar.gz
+
+AntiBot
+  /svnroot/mediawiki/!svn/ver/97632/trunk/extensions/AntiBot
+
+AntiSpoof
+  /svnroot/mediawiki/!svn/ver/103371/trunk/extensions/AntiSpoof
+
+Gadgets
+  /svnroot/mediawiki/!svn/ver/100755/trunk/extensions/Gadgets
+
+Maps
+  Maps1.0.4.tgz
+
+ReplaceText
+  http://www.mediawiki.org/wiki/Extension:Replace_Text
+  http://discoursedb.org/ReplaceText/replace_text_0.9.2.tar.gz
+
+SimpleAntiSpam
+  /svnroot/mediawiki/!svn/ver/103371/trunk/extensions/SimpleAntiSpam
+
+SpamBlacklist
+  /svnroot/mediawiki/!svn/ver/102118/trunk/extensions/SpamBlacklist
+
+UserDrop
+  https://github.com/infinity0/mw-ext-userdrop/commit/1e3bcaca1a351cb572387ae6d02e5ec5ac1afabf
+
+UserMerge
+  UserMerge-MW1.17-r77593.tar.gz
+
+Validator
+  Maps1.0.4.tgz
+
+Widgets
+  /svnroot/mediawiki/!svn/ver/80105/tags/extensions/Widgets/REL_0_9_2
