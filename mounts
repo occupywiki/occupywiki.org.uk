@@ -1,21 +1,33 @@
 #!/bin/sh
 
 do_mount() {
+	local hostdir="$(git rev-parse --show-toplevel)/$1"
 	while read x; do
-		mkdir -p "$1/$x"
-		sudo mount --bind "$x" "$1/$x"
+		mkdir -p "$hostdir/$x"
+		sudo mount --bind "$x" "$hostdir/$x"
 	done
 }
 
 do_umount() {
+	local hostdir="$(git rev-parse --show-toplevel)/$1"
 	while read x; do
-		sudo umount "$1/$x"
+		sudo umount "$hostdir/$x"
 	done
+}
+
+do_rm() {
+	local hostdir="$(git rev-parse --show-toplevel)/$1"
+	if find "$hostdir" -type d | grep -F -f- /etc/mtab; then
+		echo "abort: umount the above mountpoints first";
+		return 1
+	fi
+	git ls-tree --name-only -r HEAD "$hostdir" | xargs -n1 rm
 }
 
 cmd="do_mount host"
 case "$1" in
 -u )	cmd="do_umount host";;
+-r )	cmd="do_rm host";;
 esac
 
 cat << EOF | $cmd
