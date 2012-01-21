@@ -177,6 +177,7 @@ $wgSpamRegex="/overflow:.*auto|display:.*none|wifiguide.org/";
 # Enable subpages in the main namespace
 # https://secure.wikimedia.org/wikipedia/mediawiki/wiki/Manual:$wgNamespacesWithSubpages#Enabling_for_a_namespace
 $wgNamespacesWithSubpages[NS_MAIN] = true;
+$wgNamespacesWithSubpages[NS_PROJECT] = true;
 
 # https://secure.wikimedia.org/wikipedia/mediawiki/wiki/Manual:$wgAllowCopyUploads
 #$wgGroupPermissions['sysops']['upload_by_url'] = true;
@@ -260,6 +261,11 @@ require_once( "$IP/extensions/Gadgets/Gadgets.php" );
 require_once("$IP/extensions/Interwiki/Interwiki.php");
 $wgGroupPermissions['*']['interwiki'] = false;
 $wgGroupPermissions['bureaucrat']['interwiki'] = true;
+
+# CategoryTree
+
+require_once("$IP/extensions/CategoryTree/CategoryTree.php");
+$wgEnableMWSuggest = true;
 
 # misc settings
 

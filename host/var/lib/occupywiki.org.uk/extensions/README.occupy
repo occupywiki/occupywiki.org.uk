@@ -10,8 +10,14 @@ AntiBot
 AntiSpoof
   /svnroot/mediawiki/!svn/ver/103371/trunk/extensions/AntiSpoof
 
+CategoryTree
+  /svnroot/mediawiki/!svn/ver/100383/trunk/extensions/CategoryTree
+
 Gadgets
   /svnroot/mediawiki/!svn/ver/100755/trunk/extensions/Gadgets
+
+Interwiki
+  /svnroot/mediawiki/!svn/ver/92408/trunk/extensions/Interwiki
 
 Maps
   Maps1.0.4.tgz
